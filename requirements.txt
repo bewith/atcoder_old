@@ -1,0 +1,2 @@
+numpy
+atcoder-tools
