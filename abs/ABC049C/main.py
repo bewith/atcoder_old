@@ -6,6 +6,16 @@ NO = "NO"  # type: str
 
 
 def solve(S: str):
+    while len(S) > 0:
+        hit = False
+        for t in ["dream", "dreamer", "erase", "eraser"]:
+            if S.endswith(t):
+                S = S[0:len(S) - len(t)]
+                hit = True
+        if not(hit):
+            print(NO)
+            return
+    print(YES)
     return
 
 
@@ -18,6 +28,7 @@ def main():
     tokens = iterate_tokens()
     S = next(tokens)  # type: str
     solve(S)
+
 
 if __name__ == '__main__':
     main()
