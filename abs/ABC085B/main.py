@@ -3,6 +3,7 @@ import sys
 
 
 def solve(N: int, d: "List[int]"):
+    print(len(set(d)))
     return
 
 
