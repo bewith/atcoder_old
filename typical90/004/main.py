@@ -3,6 +3,19 @@ import sys
 
 
 def solve(H: int, W: int, A: "List[List[int]]"):
+    sumH = [sum(A[i]) for i in range(H)]
+
+    sumW = []
+    for j in range(W):
+        tmp = 0
+        for i in range(H):
+            tmp += A[i][j]
+        sumW.append(tmp)
+
+    B = [[sumH[i] + sumW[j] - A[i][j] for j in range(W)] for i in range(H)]
+
+    for o in B:
+        print(*o)
     return
 
 
@@ -15,8 +28,10 @@ def main():
     tokens = iterate_tokens()
     H = int(next(tokens))  # type: int
     W = int(next(tokens))  # type: int
-    A = [[int(next(tokens)) for _ in range(W)] for _ in range(H)]  # type: "List[List[int]]"
+    A = [[int(next(tokens)) for _ in range(W)]
+         for _ in range(H)]  # type: "List[List[int]]"
     solve(H, W, A)
+
 
 if __name__ == '__main__':
     main()
