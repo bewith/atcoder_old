@@ -3,6 +3,35 @@ import sys
 
 
 def solve(N: int, C: "List[int]", P: "List[int]", Q: int, L: "List[int]", R: "List[int]"):
+    C1 = [0] * N
+    C2 = [0] * N
+    for i in range(N):
+        if i == 0:
+            if C[i] == 1:
+                C1[i] = P[i]
+            else:
+                C2[i] = P[i]
+        else:
+            if C[i] == 1:
+                C1[i] = P[i] + C1[i - 1]
+                C2[i] = C2[i - 1]
+            else:
+                C1[i] = C1[i - 1]
+                C2[i] = P[i] + C2[i - 1]
+
+    T1 = [0] * Q
+    T2 = [0] * Q
+    for j in range(Q):
+        if L[j] == 1:
+            T1[j] = C1[R[j] - 1]
+            T2[j] = C2[R[j] - 1]
+        else:
+            T1[j] = C1[R[j] - 1] - C1[L[j] - 2]
+            T2[j] = C2[R[j] - 1] - C2[L[j] - 2]
+
+    for j in range(Q):
+        print(T1[j], T2[j])
+
     return
 
 
@@ -26,6 +55,7 @@ def main():
         L[i] = int(next(tokens))
         R[i] = int(next(tokens))
     solve(N, C, P, Q, L, R)
+
 
 if __name__ == '__main__':
     main()
