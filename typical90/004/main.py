@@ -5,12 +5,10 @@ import sys
 def solve(H: int, W: int, A: "List[List[int]]"):
     sumH = [sum(A[i]) for i in range(H)]
 
-    sumW = []
+    sumW = [0] * 2009
     for j in range(W):
-        tmp = 0
         for i in range(H):
-            tmp += A[i][j]
-        sumW.append(tmp)
+            sumW[j] += A[i][j]
 
     B = [[sumH[i] + sumW[j] - A[i][j] for j in range(W)] for i in range(H)]
 
