@@ -6,6 +6,26 @@ NO = "No"  # type: str
 
 
 def solve(N: int, K: int, A: "List[int]", B: "List[int]"):
+    diff = 0
+    for i in range(N):
+        diff += abs(A[i] - B[i])
+
+    if diff > K:
+        print(NO)
+        return
+
+    aIsOdd = sum(A) % 2 == 0
+    bIsOdd = sum(B) % 2 == 0
+    if (aIsOdd == bIsOdd):
+        if K % 2 == 0:
+            print(YES)
+        else:
+            print(NO)
+    else:
+        if K % 2 != 0:
+            print(YES)
+        else:
+            print(NO)
     return
 
 
@@ -21,6 +41,7 @@ def main():
     A = [int(next(tokens)) for _ in range(N)]  # type: "List[int]"
     B = [int(next(tokens)) for _ in range(N)]  # type: "List[int]"
     solve(N, K, A, B)
+
 
 if __name__ == '__main__':
     main()
