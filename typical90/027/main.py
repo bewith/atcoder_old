@@ -3,6 +3,12 @@ import sys
 
 
 def solve(N: int, S: "List[str]"):
+    registerd = set()
+    for i in range(len(S)):
+        s = S[i]
+        if not(s in registerd):
+            print(i + 1)
+            registerd.add(s)
     return
 
 
@@ -16,6 +22,7 @@ def main():
     N = int(next(tokens))  # type: int
     S = [next(tokens) for _ in range(N)]  # type: "List[str]"
     solve(N, S)
+
 
 if __name__ == '__main__':
     main()
